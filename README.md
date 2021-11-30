@@ -6,7 +6,13 @@ Tema do projeto integrador: **[ODS 4 DA ONU: EDUCAÇÃO DE QUALIDADE](https://br
 
 Grupo: Giovana, Robert, Thiago, Anderson
 
-**[Prototipando o Banco de dados](https://drive.google.com/file/d/1e_6BWoMTYKMxYNF9DhsPaWhGvOgVeQX1/view)** 🆗
+
+<h3 align= "center" >
+
+[Prototipando o Banco de dados](https://drive.google.com/file/d/1e_6BWoMTYKMxYNF9DhsPaWhGvOgVeQX1/view)  🆗 Preview :
+ <img width="90%" height="auto" src="./assets/db.png" height="175px"/>
+
+</h3>
 
 <br>
 <br>
@@ -17,8 +23,3 @@ Grupo: Giovana, Robert, Thiago, Anderson
 
 <br>
 <br>
-
-<h3 align= "center" >
-Preview : 
-</h3>
-<img width="90%" height="auto" src="./assets/db.png" height="175px"/>
