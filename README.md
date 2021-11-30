@@ -14,3 +14,11 @@ Grupo: Giovana, Robert, Thiago, Anderson
 **[Apostila Projeto Integrador 2021](https://drive.google.com/file/d/17n6vtRHIB_vMhRbG-nDkHwJsK4QUuXdN/view)**
 
 <a href="#"><img width="100%" height="auto" src="https://media4.giphy.com/media/xT5LMEohAIrPt34F2M/giphy.gif?cid=790b761139ca3d2a09fb4d98939ab26e756adf833ebe6bcf&rid=giphy.gif&ct=g" height="175px"/></a>
+
+<br>
+<br>
+
+<h3 align= "center" >
+Preview : 
+</h3>
+<img width="90%" height="auto" src="./assets/db.png" height="175px"/>
