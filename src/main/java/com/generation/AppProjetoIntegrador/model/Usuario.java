@@ -31,6 +31,7 @@ public class Usuario {
 	@NotBlank
 	private String senha;
 
+
 	public long getId_usuario() {
 		return id_usuario;
 	}
@@ -62,7 +63,6 @@ public class Usuario {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	
-	//testando
+
 	
 }
