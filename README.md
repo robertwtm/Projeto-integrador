@@ -4,7 +4,7 @@
 
 Tema do projeto integrador: **[ODS 4 DA ONU: EDUCAÇÃO DE QUALIDADE](https://brasil.un.org/pt-br/sdgs/4)**
 
-Grupo: Giovana, Robert, Thiago, Anderson
+Grupo: Giovana, Robert, Thiago, Anderson, Augusto
 
 
 <h3 align= "center" >
