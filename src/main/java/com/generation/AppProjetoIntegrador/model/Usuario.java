@@ -1,25 +1,32 @@
 package com.generation.AppProjetoIntegrador.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "tb_usuario")
 public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id_usuario;
+	private long idUsuario;
 	
 	@NotNull
  	@Size(min = 5, max = 45)
 	@NotBlank
-	private String nome_completo;
+	private String nomeCompleto;
 	
 	@NotNull
  	@Size(min = 5, max = 45)
@@ -30,26 +37,34 @@ public class Usuario {
  	@Size(min = 5, max = 45)
 	@NotBlank
 	private String senha;
-
-
-	public long getId_usuario() {
-		return id_usuario;
-	}
-
-	public void setId_usuario(long id_usuario) {
-		this.id_usuario = id_usuario;
-	}
-
-	public String getNome_completo() {
-		return nome_completo;
-	}
-
-	public void setNome_completo(String nome_completo) {
-		this.nome_completo = nome_completo;
-	}
-
+	
+	@ManyToOne
+	@JsonIgnoreProperties("usuario")
+	private Tema tema;
+	
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties("usuario")
+	private List<Postagem> postagem;
+	
+	//GET E SET
 	public String getEmail() {
 		return email;
+	}
+
+	public long getIdUsuario() {
+		return idUsuario;
+	}
+
+	public void setIdUsuario(long idUsuario) {
+		this.idUsuario = idUsuario;
+	}
+
+	public String getNomeCompleto() {
+		return nomeCompleto;
+	}
+
+	public void setNomeCompleto(String nomeCompleto) {
+		this.nomeCompleto = nomeCompleto;
 	}
 
 	public void setEmail(String email) {
@@ -64,5 +79,11 @@ public class Usuario {
 		this.senha = senha;
 	}
 
-	
+	public Tema getTema() {
+		return tema;
+	}
+
+	public void setTema(Tema tema) {
+		this.tema = tema;
+	}
 }
