@@ -12,31 +12,28 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 @Table(name = "tb_tema")
 public class Tema {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idTema;
-	
-	@NotNull
- 	@Size(min = 5, max = 45)
+
+	@Size(min = 5, max = 45)
 	@NotBlank
 	private String materia;
-	
-	@NotNull
- 	@Size(min = 5, max = 100)
+
+	@Size(min = 5, max = 100)
 	@NotBlank
 	private String descricao;
- 	
-	@NotNull
- 	@Size(min = 5, max = 100)
+
+	@Size(min = 5, max = 100)
 	@NotBlank
 	private String url_imagem;
-	
+
 	@OneToMany(mappedBy = "tema", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("tema")
 	private List<Usuario> usuario;
-	
- 	//GET E SET
+
+	// GET E SET
 	public String getMateria() {
 		return materia;
 	}

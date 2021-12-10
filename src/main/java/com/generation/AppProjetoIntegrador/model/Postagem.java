@@ -17,35 +17,32 @@ import javax.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name= "tb_postagem")
+@Table(name = "tb_postagem")
 public class Postagem {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idPostagem;
-	
-	@NotNull
- 	@Size(min = 5, max = 50)
+
+	@Size(min = 5, max = 50)
 	@NotBlank
 	private String titulo;
-	
-	@NotNull
- 	@Size(min = 5, max = 1000)
+
+	@Size(min = 5, max = 1000)
 	@NotBlank
 	private String descricao;
-	
-	@NotNull
- 	@Size(min = 5, max = 255)
+
+	@Size(min = 5, max = 255)
 	@NotBlank
 	private String urlImagem;
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date date = new java.sql.Date(System.currentTimeMillis());
-	
+
 	@ManyToOne
 	@JsonIgnoreProperties("postagem")
 	private Usuario usuario;
 
-	//GET E SET
+	// GET E SET
 	public long getIdPostagem() {
 		return idPostagem;
 	}
