@@ -12,21 +12,22 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import javax.validation.Valid;
-
-import com.generation.AppProjetoIntegrador.model.UserLogin;
 import com.generation.AppProjetoIntegrador.model.Usuario;
+import com.generation.AppProjetoIntegrador.model.dto.UsuarioCredentialsDTO;
+import com.generation.AppProjetoIntegrador.model.dto.UsuarioLoginDTO;
+import com.generation.AppProjetoIntegrador.model.dto.UsuarioRegisterDTO;
 import com.generation.AppProjetoIntegrador.repository.UsuarioRepository;
+import com.generation.AppProjetoIntegrador.services.UsuarioServices;
 
 @RestController
 @RequestMapping("/usuario")
-@CrossOrigin("*")
+@CrossOrigin(allowedHeaders = "*", origins = "*")
 public class UsuarioController {
-	
-	@Autowired
-	private UsuarioRepository repository;
-	
+
+	private @Autowired UsuarioRepository repository;
+	private @Autowired UsuarioServices services;
+
 	@GetMapping("/{id}")
 	public ResponseEntity<Usuario> findByIdUsuario(@PathVariable Long idUsuario) {
 		return repository.findById(idUsuario).map(resposta -> ResponseEntity.ok(resposta))
@@ -39,20 +40,20 @@ public class UsuarioController {
 	}
 
 	@PostMapping
-    public ResponseEntity<Usuario> save(@Valid @RequestBody UserLogin newUser){
-    	return services.registerUser(newUser);
-    }
-
+	public ResponseEntity<Usuario> save(@Valid @RequestBody UsuarioRegisterDTO newUser) {
+		return services.registerUser(newUser);
+	}
+	
+	@PutMapping("/credentials")
+	public ResponseEntity<UsuarioCredentialsDTO> credentials(@Valid @RequestBody UsuarioLoginDTO user) {
+		return services.getCredentials(user);
+	}
+	
 	@PutMapping
 	public ResponseEntity<Usuario> putUsuario(@Valid @RequestBody Usuario usuario) {
 		return ResponseEntity.status(HttpStatus.OK).body(repository.save(usuario));
 	}
-    
-    @PutMapping("/credentials")
-    public ResponseEntity<Usuario> credentials(@Valid @RequestBody UserLogin user){
-    	return services.getCredentials(user);
-    }
-	
+
 	@DeleteMapping("{id}")
 	public void deleteUsuario(@PathVariable Long idUsuario) {
 		repository.deleteById(idUsuario);
