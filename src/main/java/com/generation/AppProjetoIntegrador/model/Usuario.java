@@ -17,36 +17,33 @@ import javax.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name = "tb_usuario")
+@Table(name = "tbUsuario")
 public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idUsuario;
-	
-	@NotNull
- 	@Size(min = 5, max = 45)
+
+	@Size(min = 5, max = 45)
 	@NotBlank
 	private String nomeCompleto;
-	
-	@NotNull
- 	@Size(min = 5, max = 45)
+
+	@Size(min = 5, max = 45)
 	@NotBlank
 	private String email;
 
-	@NotNull
- 	@Size(min = 5, max = 45)
+	@Size(min = 5, max = 45)
 	@NotBlank
 	private String senha;
-	
+
 	@ManyToOne
 	@JsonIgnoreProperties("usuario")
 	private Tema tema;
-	
+
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("usuario")
 	private List<Postagem> postagem;
-	
-	//GET E SET
+
+	// GET E SET
 	public String getEmail() {
 		return email;
 	}
