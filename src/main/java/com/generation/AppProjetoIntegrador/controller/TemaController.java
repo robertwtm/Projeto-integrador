@@ -1,6 +1,5 @@
 package com.generation.AppProjetoIntegrador.controller;
 
-import com.generation.AppProjetoIntegrador.model.Postagem;
 import com.generation.AppProjetoIntegrador.repository.TemaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

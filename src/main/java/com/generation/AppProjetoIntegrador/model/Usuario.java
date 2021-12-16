@@ -10,8 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -27,7 +27,7 @@ public class Usuario {
 	@NotBlank
 	private String nomeCompleto;
 
-	@Size(min = 5, max = 45)
+	@Email
 	@NotBlank
 	private String email;
 
