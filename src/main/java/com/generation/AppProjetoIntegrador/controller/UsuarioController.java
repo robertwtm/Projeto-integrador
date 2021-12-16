@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.generation.AppProjetoIntegrador.model.Postagem;
+import javax.validation.Valid;
+
+import com.generation.AppProjetoIntegrador.model.UserLogin;
 import com.generation.AppProjetoIntegrador.model.Usuario;
 import com.generation.AppProjetoIntegrador.repository.UsuarioRepository;
 
@@ -30,14 +32,27 @@ public class UsuarioController {
 		return repository.findById(idUsuario).map(resposta -> ResponseEntity.ok(resposta))
 				.orElse(ResponseEntity.notFound().build());
 	}
+
 	@PostMapping
-	public ResponseEntity<Usuario> postUsuario(@RequestBody Usuario usuario) {
+	public ResponseEntity<Usuario> postUsuario(@Valid @RequestBody Usuario usuario) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(usuario));
 	}
+
+	@PostMapping
+    public ResponseEntity<Usuario> save(@Valid @RequestBody UserLogin newUser){
+    	return services.registerUser(newUser);
+    }
+
 	@PutMapping
-	public ResponseEntity<Usuario> putUsuario(@RequestBody Usuario usuario) {
+	public ResponseEntity<Usuario> putUsuario(@Valid @RequestBody Usuario usuario) {
 		return ResponseEntity.status(HttpStatus.OK).body(repository.save(usuario));
 	}
+    
+    @PutMapping("/credentials")
+    public ResponseEntity<Usuario> credentials(@Valid @RequestBody UserLogin user){
+    	return services.getCredentials(user);
+    }
+	
 	@DeleteMapping("{id}")
 	public void deleteUsuario(@PathVariable Long idUsuario) {
 		repository.deleteById(idUsuario);
