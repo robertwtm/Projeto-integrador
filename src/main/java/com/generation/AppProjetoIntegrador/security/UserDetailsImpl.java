@@ -2,28 +2,26 @@ package com.generation.AppProjetoIntegrador.security;
 
 import java.util.Collection;
 import java.util.List;
-
-
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import com.generation.AppProjetoIntegrador.model.Usuario;
 
 public class UserDetailsImpl implements UserDetails {
-	
-    private static final long serialVersionUID = 1L;
+
+	private static final long serialVersionUID = 1L;
 
 	private String email;
-    private String password;
-    private List<GrantedAuthority> authorities;
+	private String password;
+	private List<GrantedAuthority> authorities;
 
-    public UserDetailsImpl(Usuario user) {
-        this.email = user.getEmail();
-        this.password = user.getSenha();
-    }
+	public UserDetailsImpl(Usuario user) {
+		this.email = user.getEmail();
+		this.password = user.getSenha();
+	}
 
-    public UserDetailsImpl() {}
-	
+	public UserDetailsImpl() {
+	}
+
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return authorities;

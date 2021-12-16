@@ -6,6 +6,8 @@ import org.springframework.stereotype.Repository;
 import com.generation.AppProjetoIntegrador.model.Tema;
 
 @Repository
-public interface TemaRepository extends JpaRepository<Tema, Long>{
+public interface TemaRepository extends JpaRepository<Tema, Long> {
+
 	public List<Tema> findAllByMateriaContainingIgnoreCase(String materia);
+
 }

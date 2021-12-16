@@ -1,5 +1,6 @@
 package com.generation.AppProjetoIntegrador.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -19,40 +20,41 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 @Table(name = "tbUsuario")
 public class Usuario {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long idUsuario;
+	private Long idUsuario;
+	private String token;
 
-	@Size(min = 5, max = 45)
-	@NotBlank
 	private String nomeCompleto;
-
-	@Email
-	@NotBlank
 	private String email;
-
-	@Size(min = 5, max = 45)
-	@NotBlank
 	private String senha;
-
+	
+	// Relacionamento
 	@ManyToOne
 	@JsonIgnoreProperties("usuario")
 	private Tema tema;
 
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("usuario")
-	private List<Postagem> postagem;
-
-	// GET E SET
-	public String getEmail() {
-		return email;
+	private List<Postagem> postagem = new ArrayList<>();
+	
+	//Construtor
+	public Usuario() {}
+	
+	public Usuario(String nomeCompleto, String email, String password) {
+		super();
+		this.nomeCompleto = nomeCompleto;
+		this.email = email;
+		this.senha = senha;
 	}
-
-	public long getIdUsuario() {
+	
+	// GET E SET
+	public Long getIdUsuario() {
 		return idUsuario;
 	}
 
-	public void setIdUsuario(long idUsuario) {
+	public void setIdUsuario(Long idUsuario) {
 		this.idUsuario = idUsuario;
 	}
 
@@ -64,6 +66,10 @@ public class Usuario {
 		this.nomeCompleto = nomeCompleto;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+	
 	public void setEmail(String email) {
 		this.email = email;
 	}
@@ -83,4 +89,21 @@ public class Usuario {
 	public void setTema(Tema tema) {
 		this.tema = tema;
 	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
+	public List<Postagem> getPostagem() {
+		return postagem;
+	}
+
+	public void setPostagem(List<Postagem> postagem) {
+		this.postagem = postagem;
+	}
+	
 }
