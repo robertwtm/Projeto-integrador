@@ -18,7 +18,10 @@ import javax.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "tbUsuario")
 public class Usuario {
@@ -48,7 +51,8 @@ public class Usuario {
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("usuario")
 	private List<Postagem> postagem = new ArrayList<>();
-	
+
+	/*
 	//Construtor
 	public Usuario() {}
 	
@@ -115,5 +119,5 @@ public class Usuario {
 	public void setPostagem(List<Postagem> postagem) {
 		this.postagem = postagem;
 	}
-	
+	*/
 }
