@@ -1,5 +1,5 @@
 <h1 align= "center" >
-    # Rede social Projeto integrador
+    # Rede social Educamus Projeto integrador
 </h1>
 
 Tema do projeto integrador: **[ODS 4 DA ONU: EDUCAÇÃO DE QUALIDADE](https://brasil.un.org/pt-br/sdgs/4)**
