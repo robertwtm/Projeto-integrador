@@ -34,10 +34,6 @@ public class UsuarioController {
 				.orElse(ResponseEntity.notFound().build());
 	}
 
-	@PostMapping
-	public ResponseEntity<Usuario> postUsuario(@Valid @RequestBody Usuario usuario) {
-		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(usuario));
-	}
 
 	@PostMapping
 	public ResponseEntity<Usuario> save(@Valid @RequestBody UsuarioRegisterDTO newUser) {

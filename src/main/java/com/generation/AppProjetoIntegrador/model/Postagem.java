@@ -14,7 +14,9 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "tbPostagem")
 public class Postagem {
@@ -41,52 +43,5 @@ public class Postagem {
 	@JsonIgnoreProperties("postagem")
 	private Usuario usuario;
 
-	// GET E SET
-	public long getIdPostagem() {
-		return idPostagem;
-	}
 
-	public void setIdPostagem(long idPostagem) {
-		this.idPostagem = idPostagem;
-	}
-
-	public String getTitulo() {
-		return titulo;
-	}
-
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
-	}
-
-	public String getDescricao() {
-		return descricao;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-
-	public String getUrlImagem() {
-		return urlImagem;
-	}
-
-	public void setUrlImagem(String urlImagem) {
-		this.urlImagem = urlImagem;
-	}
-
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
 }
