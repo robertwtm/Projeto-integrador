@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import com.generation.AppProjetoIntegrador.model.Usuario;
 import com.generation.AppProjetoIntegrador.model.dto.UsuarioCredentialsDTO;
@@ -15,6 +16,7 @@ import com.generation.AppProjetoIntegrador.model.dto.UsuarioLoginDTO;
 import com.generation.AppProjetoIntegrador.model.dto.UsuarioRegisterDTO;
 import com.generation.AppProjetoIntegrador.repository.UsuarioRepository;
 
+@Service
 public class UsuarioServices {
 
 	private @Autowired UsuarioRepository repository;
