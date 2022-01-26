@@ -1,4 +1,4 @@
-package com.generation.AppProjetoIntegrador.controller.configuration;
+package com.generation.AppProjetoIntegrador.configuration;
 
 import org.springdoc.core.customizers.OpenApiCustomiser;
 import org.springframework.context.annotation.Bean;

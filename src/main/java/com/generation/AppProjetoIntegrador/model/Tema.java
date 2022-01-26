@@ -7,44 +7,41 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Data;
 
-@Data
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Entity
 @Table(name = "tbTema")
 public class Tema {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idTema;
+	private Long id;
 
 	@Size(min = 5, max = 45)
-	@NotBlank
+	@NotBlank(message = "O atributo materia é obrigatório e não pode conter espaços em branco")
 	private String materia;
 
 	@Size(min = 5, max = 100)
-	@NotBlank
+	@NotBlank(message = "O atributo Descrição é obrigatório e não pode conter espaços em branco")
 	private String descricao;
 
-	@Size(min = 5, max = 100)
-	@NotBlank
-	private String url_imagem;
-
-	@OneToMany(mappedBy = "tema", cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "tema", cascade = CascadeType.ALL)
 	@JsonIgnoreProperties("tema")
-	private List<Usuario> usuario;
+	private List<Postagem> postagem;
 
-	// GET E SET
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	public String getMateria() {
 		return materia;
-	}
-
-	public Long getIdTema() {
-		return idTema;
-	}
-
-	public void setIdTema(Long idTema) {
-		this.idTema = idTema;
 	}
 
 	public void setMateria(String materia) {
@@ -59,19 +56,11 @@ public class Tema {
 		this.descricao = descricao;
 	}
 
-	public String getUrl_imagem() {
-		return url_imagem;
+	public List<Postagem> getPostagem() {
+		return postagem;
 	}
 
-	public void setUrl_imagem(String url_imagem) {
-		this.url_imagem = url_imagem;
-	}
-
-	public List<Usuario> getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(List<Usuario> usuario) {
-		this.usuario = usuario;
+	public void setPostagem(List<Postagem> postagem) {
+		this.postagem = postagem;
 	}
 }
