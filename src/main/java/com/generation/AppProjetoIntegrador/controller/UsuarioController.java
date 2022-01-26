@@ -24,7 +24,7 @@ import com.generation.AppProjetoIntegrador.service.UsuarioService;
 
 @RestController
 @RequestMapping("/usuarios")
-@CrossOrigin(allowedHeaders = "*", origins = "*")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UsuarioController {
 
 	@Autowired
