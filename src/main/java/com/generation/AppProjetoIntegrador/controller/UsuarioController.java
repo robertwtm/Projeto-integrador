@@ -1,10 +1,10 @@
 package com.generation.AppProjetoIntegrador.controller;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,47 +12,56 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+import java.util.Optional;
+
 import javax.validation.Valid;
 import com.generation.AppProjetoIntegrador.model.Usuario;
-import com.generation.AppProjetoIntegrador.model.dto.UsuarioCredentialsDTO;
-import com.generation.AppProjetoIntegrador.model.dto.UsuarioLoginDTO;
-import com.generation.AppProjetoIntegrador.model.dto.UsuarioRegisterDTO;
+import com.generation.AppProjetoIntegrador.model.UsuarioLogin;
 import com.generation.AppProjetoIntegrador.repository.UsuarioRepository;
-import com.generation.AppProjetoIntegrador.services.UsuarioServices;
+import com.generation.AppProjetoIntegrador.service.UsuarioService;
 
 @RestController
-@RequestMapping("/usuario")
-@CrossOrigin(allowedHeaders = "*", origins = "*")
+@RequestMapping("/usuarios")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UsuarioController {
 
-	private @Autowired UsuarioRepository repository;
-	private @Autowired UsuarioServices services;
+	@Autowired
+	private UsuarioService usuarioService;
+
+	@Autowired
+	private UsuarioRepository usuarioRepository;
+
+	@GetMapping("/listar")
+	public ResponseEntity<List<Usuario>> getAll() {
+		return ResponseEntity.ok(usuarioRepository.findAll());
+	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Usuario> findByIdUsuario(@PathVariable Long idUsuario) {
-		return repository.findById(idUsuario).map(resposta -> ResponseEntity.ok(resposta))
+	public ResponseEntity<Usuario> getById(@PathVariable long id) {
+		return usuarioRepository.findById(id).map(resp -> ResponseEntity.ok(resp))
 				.orElse(ResponseEntity.notFound().build());
 	}
 
+	@PostMapping("/logar")
+	public ResponseEntity<UsuarioLogin> login(@RequestBody Optional<UsuarioLogin> usuarioLogin) {
+		return usuarioService.autenticarUsuario(usuarioLogin)
+				.map(resposta -> ResponseEntity.status(HttpStatus.OK).body(resposta))
+				.orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
+	}
 
-	@PostMapping
-	public ResponseEntity<Usuario> save(@Valid @RequestBody UsuarioRegisterDTO newUser) {
-		return services.registerUser(newUser);
+	@PostMapping("/cadastrar")
+	public ResponseEntity<Usuario> postUsuario(@Valid @RequestBody Usuario usuario) {
+		return usuarioService.cadastrarUsuario(usuario)
+				.map(resposta -> ResponseEntity.status(HttpStatus.CREATED).body(resposta))
+				.orElse(ResponseEntity.status(HttpStatus.BAD_REQUEST).build());
 	}
-	
-	@PutMapping("/credentials")
-	public ResponseEntity<UsuarioCredentialsDTO> credentials(@Valid @RequestBody UsuarioLoginDTO user) {
-		return services.getCredentials(user);
-	}
-	
-	@PutMapping
+
+	@PutMapping("/atualizar")
 	public ResponseEntity<Usuario> putUsuario(@Valid @RequestBody Usuario usuario) {
-		return ResponseEntity.status(HttpStatus.OK).body(repository.save(usuario));
+		return usuarioService.atualizarUsuario(usuario)
+				.map(resposta -> ResponseEntity.status(HttpStatus.OK).body(resposta))
+				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 	}
-
-	@DeleteMapping("{id}")
-	public void deleteUsuario(@PathVariable Long idUsuario) {
-		repository.deleteById(idUsuario);
-	}
-
 }

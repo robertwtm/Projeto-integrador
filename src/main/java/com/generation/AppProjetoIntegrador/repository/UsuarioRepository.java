@@ -9,10 +9,7 @@ import com.generation.AppProjetoIntegrador.model.Usuario;
 
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
+	public Optional<Usuario> findByUsuario(String usuario);
 
-	public Optional<Usuario> findByEmail(String email);
-
-	public Optional<Usuario> findByToken(String token);
-
-	public List<Usuario> findAllByNomeCompletoContainingIgnoreCase(String nomeCompleto);
+	public List<Usuario> findAllByNomeContainingIgnoreCase(String nome);
 }
