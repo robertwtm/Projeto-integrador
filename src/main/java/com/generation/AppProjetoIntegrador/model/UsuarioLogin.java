@@ -10,7 +10,6 @@ public class UsuarioLogin {
 	private String token;
 	private String tipo;
 
-	
 	public Long getId() {
 		return id;
 	}

@@ -32,10 +32,8 @@ public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
 			.withUser("root")
 			.password(passwordEncoder().encode("root"))
 			.authorities("ROLE_ADMIN");
-
 	}
 
-	
 	 @Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
