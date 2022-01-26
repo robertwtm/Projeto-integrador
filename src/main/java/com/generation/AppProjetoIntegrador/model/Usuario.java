@@ -26,16 +26,17 @@ public class Usuario {
 	private Long id;
 	private String token;
 	
-	@NotBlank
+	@NotBlank(message = "O atributo Nome é Obrigatório!")
 	private String nome;
 	
 	@Schema(example = "email@email.com.br")
 	@NotBlank(message = "O atributo Email é obrigatório")
 	@Email(message = "O atributo deve ter um email válido!")
+	@Size(min = 5, max = 100)
 	private String usuario;
 	
-	@NotBlank
-	@Size(min = 5, max = 100)
+	@NotBlank(message = "O atributo Senha é Obrigatório!")
+	@Size(min = 5, max = 100 , message = "A Senha deve ter no mínimo 5 caracteres e no máximo 100")
 	private String senha;
 	
 	private String foto;
