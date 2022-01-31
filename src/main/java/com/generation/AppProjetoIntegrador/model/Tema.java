@@ -17,11 +17,10 @@ public class Tema {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Size(min = 5, max = 45)
-	@NotBlank(message = "O atributo materia é obrigatório e não pode conter espaços em branco")
+	//@Size(min = 5, max = 45)
+	//@NotBlank(message = "O atributo materia é obrigatório e não pode conter espaços em branco")
 	private String materia;
 
-	@Size(min = 5, max = 100)
 	@NotBlank(message = "O atributo Descrição é obrigatório e não pode conter espaços em branco")
 	private String descricao;
 
